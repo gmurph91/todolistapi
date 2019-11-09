@@ -30,4 +30,16 @@ app.use(bodyParser.urlencoded({
     })
   }) 
 
+  app.put("/update/:id", (req, res) => {
+    instance.connect((err, client) => {
+      if (err) res.send(err)
+      const collection = client.db("todolist").collection("todolist")
+      collection.replaceOne(
+        { "_id": mongodb.ObjectId(req.params.id) }, 
+        req.body,
+        {upsert: true}
+      ).then(r => res.send(r.ops))
+    })
+  })
+
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))
