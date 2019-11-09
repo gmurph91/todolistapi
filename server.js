@@ -1,7 +1,7 @@
 const express = require('express')
 var cors = require('cors')
 const app = express()
-const port = process.env.POR || 3005
+const port = process.env.PORT || 3005
 const bodyParser = require('body-parser')
 const mongodb = require('mongodb')
 const MongoClient = require('mongodb').MongoClient
